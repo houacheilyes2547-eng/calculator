@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator</title>
+    <title>SmartCalc</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,10 +11,20 @@
         <!-- Logo and Title -->
         <div class="calculator-header">
             <img src="logo.svg" alt="Scientific Calculator Logo" class="calculator-logo">
-            <h1 class="calculator-title">calculator</h1>
+            <h1 class="calculator-title">SmartCalc</h1>
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
         </div>
-        
-        <div class="calculator">
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="calculator">الآلة الحاسبة</button>
+            <button class="tab-button" data-tab="converter">تحويل الوحدات</button>
+        </div>
+        <!-- Calculator Section -->
+        <div class="calculator" id="calculatorSection">
             <!-- Display Section -->
             <div class="display">
                 <div class="display-previous" id="previousOperand"></div>
@@ -60,6 +70,57 @@
 
                 <!-- Row 6: Equals button spanning multiple columns -->
                 <button class="btn btn-equals" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- Unit Converter Section -->
+        <div class="converter hidden" id="converterSection">
+            <div class="converter-container">
+                <!-- Category Selection -->
+                <div class="converter-group">
+                    <label for="category" class="converter-label">الفئة / Category</label>
+                    <select id="category" class="converter-select">
+                        <option value="length">الطول / Length</option>
+                        <option value="weight">الوزن / Weight</option>
+                        <option value="temperature">الحرارة / Temperature</option>
+                        <option value="time">الوقت / Time</option>
+                    </select>
+                </div>
+
+                <!-- Input Value -->
+                <div class="converter-group">
+                    <label for="inputValue" class="converter-label">القيمة / Value</label>
+                    <input type="number" id="inputValue" class="converter-input" placeholder="أدخل القيمة / Enter value" value="0">
+                </div>
+
+                <!-- From Unit -->
+                <div class="converter-group">
+                    <label for="fromUnit" class="converter-label">من / From</label>
+                    <select id="fromUnit" class="converter-select">
+                        <option value="meter">متر / Meter</option>
+                        <option value="kilometer">كيلومتر / Kilometer</option>
+                        <option value="centimeter">سنتيمتر / Centimeter</option>
+                    </select>
+                </div>
+
+                <!-- To Unit -->
+                <div class="converter-group">
+                    <label for="toUnit" class="converter-label">إلى / To</label>
+                    <select id="toUnit" class="converter-select">
+                        <option value="meter">متر / Meter</option>
+                        <option value="kilometer">كيلومتر / Kilometer</option>
+                        <option value="centimeter">سنتيمتر / Centimeter</option>
+                    </select>
+                </div>
+
+                <!-- Result Display -->
+                <div class="converter-result">
+                    <div class="converter-result-label">النتيجة / Result</div>
+                    <div id="conversionResult" class="converter-result-value">0</div>
+                </div>
+
+                <!-- Clear Button -->
+                <button id="clearConverter" class="converter-clear-btn">مسح / Clear</button>
             </div>
         </div>
     </div>
