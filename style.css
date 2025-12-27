@@ -1,0 +1,1044 @@
+/* CSS Variables for Design Tokens */
+:root {
+    /* Colors - Enhanced Professional Palette */
+    --color-bg-primary: #0a0e27;
+    --color-bg-secondary: #ffffff;
+    --color-bg-display: #1a1d3a;
+    --color-surface: #f8f9fa;
+    --color-surface-hover: #e9ecef;
+    --color-surface-active: #dee2e6;
+    
+    --color-text-primary: #00ff88;
+    --color-text-secondary: #6b7280;
+    --color-text-muted: #9ca3af;
+    --color-text-dark: #1f2937;
+    
+    /* Realistic Button Colors */
+    --color-number: #f3f4f6;
+    --color-number-text: #1f2937;
+    --color-number-hover: #e5e7eb;
+    --color-number-active: #d1d5db;
+    
+    --color-operator: #ff9500;
+    --color-operator-hover: #ff8800;
+    --color-operator-active: #e67700;
+    
+    --color-function: #4f46e5;
+    --color-function-hover: #4338ca;
+    --color-function-active: #3730a3;
+    
+    --color-utility: #dc2626;
+    --color-utility-hover: #b91c1c;
+    --color-utility-active: #991b1b;
+    
+    --color-equals: #16a34a;
+    --color-equals-hover: #15803d;
+    --color-equals-active: #166534;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-display: 2.5rem;
+    --font-size-previous: 1.25rem;
+    --font-size-button: 1.125rem;
+}
+
+/* Global Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #db2777 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(219, 39, 119, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(30, 58, 138, 0.2) 0%, transparent 50%);
+    animation: backgroundPulse 10s ease infinite;
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Calculator Wrapper */
+.calculator-wrapper {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Calculator Header */
+.calculator-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeInDown 0.6s ease;
+}
+
+.calculator-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-md);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.calculator-title {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Calculator Container */
+.calculator {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(20px);
+    animation: fadeInUp 0.6s ease;
+    position: relative;
+}
+
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f56565 100%);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Display Section */
+.display {
+    background: var(--color-bg-display);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+}
+
+.display-previous {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-previous);
+    font-weight: 400;
+    min-height: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+    word-break: break-all;
+    opacity: 0.7;
+}
+
+.display-current {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-display);
+    font-weight: 700;
+    word-break: break-all;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Button Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-sm);
+}
+
+/* Base Button Styles */
+.btn {
+    font-family: var(--font-family);
+    font-size: var(--font-size-button);
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Number Buttons */
+.btn-number {
+    background: var(--color-number);
+    color: var(--color-number-text);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-number:hover {
+    background: var(--color-number-hover);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateY(-1px);
+}
+
+.btn-number:active {
+    background: var(--color-number-active);
+    box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Operator Buttons */
+.btn-operator {
+    background: var(--color-operator);
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: 
+        0 4px 8px rgba(255, 149, 0, 0.3),
+        0 0 0 1px rgba(255, 149, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-operator:hover {
+    background: var(--color-operator-hover);
+    box-shadow: 
+        0 6px 12px rgba(255, 149, 0, 0.4),
+        0 0 0 1px rgba(255, 149, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-operator:active {
+    background: var(--color-operator-active);
+    box-shadow: 
+        0 2px 4px rgba(255, 149, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Scientific Function Buttons */
+.btn-function {
+    background: var(--color-function);
+    color: white;
+    font-size: 1rem;
+    box-shadow: 
+        0 3px 6px rgba(79, 70, 229, 0.3),
+        0 0 0 1px rgba(79, 70, 229, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-function:hover {
+    background: var(--color-function-hover);
+    box-shadow: 
+        0 5px 10px rgba(79, 70, 229, 0.4),
+        0 0 0 1px rgba(79, 70, 229, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.btn-function:active {
+    background: var(--color-function-active);
+    box-shadow: 
+        0 2px 4px rgba(79, 70, 229, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Utility Buttons (Clear, Delete) */
+.btn-utility {
+    background: var(--color-utility);
+    color: white;
+    font-weight: 700;
+    box-shadow: 
+        0 3px 6px rgba(220, 38, 38, 0.3),
+        0 0 0 1px rgba(220, 38, 38, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-utility:hover {
+    background: var(--color-utility-hover);
+    box-shadow: 
+        0 5px 10px rgba(220, 38, 38, 0.4),
+        0 0 0 1px rgba(220, 38, 38, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.btn-utility:active {
+    background: var(--color-utility-active);
+    box-shadow: 
+        0 2px 4px rgba(220, 38, 38, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Equals Button */
+.btn-equals {
+    grid-column: span 5;
+    background: var(--color-equals);
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    box-shadow: 
+        0 6px 12px rgba(22, 163, 74, 0.4),
+        0 0 0 1px rgba(22, 163, 74, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-equals:hover {
+    background: var(--color-equals-hover);
+    box-shadow: 
+        0 8px 16px rgba(22, 163, 74, 0.5),
+        0 0 0 1px rgba(22, 163, 74, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-equals:active {
+    background: var(--color-equals-active);
+    box-shadow: 
+        0 3px 6px rgba(22, 163, 74, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - FULL DEVICE SUPPORT
+   ============================================ */
+
+/* Display Overflow Handling - All Devices */
+.display-current {
+    /* Allow horizontal scroll for very long numbers */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 136, 0.3) transparent;
+}
+
+.display-current::-webkit-scrollbar {
+    height: 4px;
+}
+
+.display-current::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.display-current::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.3);
+    border-radius: 2px;
+}
+
+.display-previous {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    scrollbar-width: none;
+}
+
+.display-previous::-webkit-scrollbar {
+    display: none;
+}
+
+/* Prevent horizontal page scrolling */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.calculator-wrapper {
+    overflow: visible;
+}
+
+/* ============================================
+   LARGE SCREENS (1025px+)
+   Desktop/Large Monitors - Optimal Viewing
+   ============================================ */
+@media (min-width: 1025px) {
+    /* Slightly larger calculator on big screens */
+    .calculator-wrapper {
+        max-width: 440px;
+    }
+    
+    .calculator {
+        padding: 2.5rem;
+    }
+    
+    .calculator-logo {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .calculator-title {
+        font-size: 2rem;
+    }
+    
+    .display {
+        min-height: 140px;
+        padding: 2.25rem;
+    }
+    
+    .btn {
+        min-height: 65px;
+        font-size: 1.2rem;
+    }
+    
+    .btn-operator {
+        font-size: 1.6rem;
+    }
+    
+    .btn-equals {
+        font-size: 1.9rem;
+    }
+}
+
+/* ============================================
+   LAPTOPS (769px - 1024px)
+   Standard Laptop Screens
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .calculator-wrapper {
+        max-width: 420px;
+    }
+    
+    .calculator {
+        padding: var(--spacing-xl);
+    }
+    
+    .calculator-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .calculator-title {
+        font-size: 1.75rem;
+    }
+    
+    .display {
+        min-height: 130px;
+        padding: var(--spacing-xl);
+    }
+    
+    .btn {
+        min-height: 60px;
+        font-size: 1.125rem;
+    }
+    
+    /* Ensure touch-friendly even on touchscreen laptops */
+    .btn {
+        min-height: 60px;
+    }
+}
+
+/* ============================================
+   TABLETS (481px - 768px)
+   iPad, Android Tablets - Portrait & Landscape
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        padding: var(--spacing-lg);
+    }
+    
+    .calculator-wrapper {
+        max-width: min(95%, 400px);
+    }
+    
+    .calculator {
+        padding: 1.75rem;
+    }
+    
+    .calculator-logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+    
+    .calculator-title {
+        font-size: 1.625rem;
+    }
+    
+    .calculator-header {
+        margin-bottom: 1.25rem;
+    }
+    
+    .display {
+        min-height: 120px;
+        padding: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .display-current {
+        font-size: 2.25rem;
+    }
+    
+    .display-previous {
+        font-size: 1.125rem;
+    }
+    
+    /* Touch-friendly button sizing */
+    .btn {
+        min-height: 56px;
+        padding: 0.875rem;
+        font-size: 1.0625rem;
+    }
+    
+    .btn-operator {
+        font-size: 1.375rem;
+    }
+    
+    .btn-equals {
+        font-size: 1.625rem;
+        min-height: 60px;
+    }
+    
+    .buttons {
+        gap: 0.625rem;
+    }
+}
+
+/* ============================================
+   MOBILE LANDSCAPE (481px - 768px, landscape)
+   Phones in Landscape Mode
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 0.75rem;
+    }
+    
+    .calculator-wrapper {
+        max-width: 90%;
+    }
+    
+    .calculator-header {
+        margin-bottom: 0.75rem;
+    }
+    
+    .calculator-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .calculator-title {
+        font-size: 1.25rem;
+    }
+    
+    .calculator {
+        padding: 1rem;
+    }
+    
+    .display {
+        min-height: 90px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .display-current {
+        font-size: 1.75rem;
+    }
+    
+    .display-previous {
+        font-size: 0.9375rem;
+    }
+    
+    .btn {
+        min-height: 48px;
+        padding: 0.625rem;
+        font-size: 0.9375rem;
+    }
+    
+    .btn-operator {
+        font-size: 1.25rem;
+    }
+    
+    .btn-equals {
+        font-size: 1.5rem;
+        min-height: 52px;
+    }
+    
+    .buttons {
+        gap: 0.5rem;
+    }
+}
+
+/* ============================================
+   MOBILE (320px - 480px)
+   Most Smartphones - Portrait Mode
+   ============================================ */
+@media (max-width: 480px) {
+    :root {
+        /* Responsive typography tokens */
+        --font-size-display: clamp(1.75rem, 5vw, 2.25rem);
+        --font-size-previous: clamp(0.875rem, 3vw, 1.125rem);
+        --font-size-button: clamp(0.9375rem, 2.5vw, 1.0625rem);
+    }
+    
+    body {
+        padding: 0.75rem;
+        min-height: 100vh;
+    }
+    
+    @supports (min-height: 100dvh) {
+        body {
+            min-height: 100dvh;
+        }
+    }
+    
+    .calculator-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .calculator-header {
+        margin-bottom: 1rem;
+    }
+    
+    .calculator-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.625rem;
+    }
+    
+    .calculator-title {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+    }
+    
+    .calculator {
+        padding: 1.25rem;
+        border-radius: 0.875rem;
+    }
+    
+    .display {
+        min-height: 110px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+        border-radius: 0.625rem;
+    }
+    
+    .display-current {
+        font-size: var(--font-size-display);
+    }
+    
+    .display-previous {
+        font-size: var(--font-size-previous);
+        min-height: 1.25rem;
+    }
+    
+    /* Touch-optimized button grid */
+    .buttons {
+        gap: 0.5rem;
+    }
+    
+    /* Touch-friendly buttons (minimum 44px per iOS guidelines) */
+    .btn {
+        min-height: 52px;
+        padding: 0.75rem 0.5rem;
+        font-size: var(--font-size-button);
+        border-radius: 0.5rem;
+    }
+    
+    .btn-operator {
+        font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+    }
+    
+    .btn-function {
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+    }
+    
+    .btn-equals {
+        font-size: clamp(1.5rem, 4vw, 1.75rem);
+        min-height: 56px;
+    }
+    
+    /* Improved active state for touch */
+    .btn:active {
+        transform: scale(0.96);
+    }
+}
+
+/* ============================================
+   SMALL MOBILE (320px - 375px)
+   iPhone SE, Small Android Phones
+   ============================================ */
+@media (max-width: 375px) {
+    :root {
+        --font-size-display: clamp(1.5rem, 5vw, 2rem);
+        --font-size-previous: clamp(0.8125rem, 2.5vw, 1rem);
+        --font-size-button: clamp(0.875rem, 2.5vw, 1rem);
+    }
+    
+    body {
+        padding: 0.5rem;
+    }
+    
+    .calculator-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .calculator-title {
+        font-size: clamp(1.125rem, 3.5vw, 1.375rem);
+    }
+    
+    .calculator {
+        padding: 1rem;
+    }
+    
+    .display {
+        min-height: 100px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .buttons {
+        gap: 0.375rem;
+    }
+    
+    .btn {
+        min-height: 48px;
+        padding: 0.625rem 0.375rem;
+    }
+    
+    .btn-equals {
+        min-height: 52px;
+    }
+}
+
+/* ============================================
+   EXTRA SMALL MOBILE (max 320px)
+   Very Small Devices - iPhone 5/SE Gen 1
+   ============================================ */
+@media (max-width: 320px) {
+    :root {
+        --font-size-display: clamp(1.375rem, 5vw, 1.75rem);
+        --font-size-previous: clamp(0.75rem, 2.5vw, 0.9375rem);
+        --font-size-button: clamp(0.8125rem, 2.5vw, 0.9375rem);
+    }
+    
+    body {
+        padding: 0.375rem;
+    }
+    
+    .calculator-header {
+        margin-bottom: 0.75rem;
+    }
+    
+    .calculator-logo {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .calculator-title {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+    }
+    
+    .calculator {
+        padding: 0.875rem;
+        border-radius: 0.75rem;
+    }
+    
+    .display {
+        min-height: 90px;
+        padding: 0.875rem;
+        margin-bottom: 0.875rem;
+    }
+    
+    .buttons {
+        gap: 0.3125rem;
+    }
+    
+    /* Maintain minimum touch target */
+    .btn {
+        min-height: 44px;
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8125rem;
+    }
+    
+    .btn-operator {
+        font-size: 1.125rem;
+    }
+    
+    .btn-function {
+        font-size: 0.75rem;
+    }
+    
+    .btn-equals {
+        font-size: 1.375rem;
+        min-height: 48px;
+    }
+}
+
+/* ============================================
+   MOBILE PORTRAIT OPTIMIZATION
+   Enhanced Portrait Mode Experience
+   ============================================ */
+@media (max-width: 480px) and (orientation: portrait) {
+    /* Optimize for portrait viewing */
+    .calculator-wrapper {
+        max-width: 100%;
+    }
+    
+    /* Better vertical spacing in portrait */
+    .calculator-header {
+        margin-bottom: 1.125rem;
+    }
+    
+    .display {
+        margin-bottom: 1.125rem;
+    }
+}
+
+/* ============================================
+   MOBILE LANDSCAPE (max 768px, landscape)
+   Compact Layout for Landscape Phones
+   ============================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 0.5rem;
+        align-items: flex-start;
+        padding-top: 0.75rem;
+    }
+    
+    .calculator-wrapper {
+        max-width: 85%;
+    }
+    
+    .calculator-header {
+        margin-bottom: 0.5rem;
+    }
+    
+    .calculator-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0.375rem;
+    }
+    
+    .calculator-title {
+        font-size: 1.125rem;
+    }
+    
+    .calculator {
+        padding: 0.875rem;
+    }
+    
+    .display {
+        min-height: 80px;
+        padding: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .display-current {
+        font-size: 1.625rem;
+    }
+    
+    .display-previous {
+        font-size: 0.875rem;
+    }
+    
+    .buttons {
+        gap: 0.375rem;
+    }
+    
+    .btn {
+        min-height: 44px;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-operator {
+        font-size: 1.125rem;
+    }
+    
+    .btn-equals {
+        font-size: 1.375rem;
+        min-height: 48px;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY & TOUCH IMPROVEMENTS
+   Enhanced for All Devices
+   ============================================ */
+
+/* Larger tap targets on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        min-height: 52px;
+        padding: 0.875rem;
+    }
+    
+    .btn-equals {
+        min-height: 58px;
+    }
+    
+    /* Increase gap between buttons for easier tapping */
+    .buttons {
+        gap: 0.5rem;
+    }
+}
+
+/* Better hover states for devices with hover capability */
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+        cursor: pointer;
+    }
+}
+
+/* Reduce animations on devices that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .calculator-logo {
+        animation: none;
+    }
+    
+    body::before {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .calculator {
+        border: 2px solid currentColor;
+    }
+    
+    .btn {
+        border: 1px solid currentColor;
+    }
+    
+    .display {
+        border: 2px solid rgba(0, 255, 136, 0.5);
+    }
+}
